@@ -6,6 +6,9 @@ import 'firebase/auth';
 import Auth from '../components/Auth/Auth';
 import Home from '../components/Home/Home';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
+import Inventory from '../components/Inventory/Inventory';
+import NewOrder from '../components/NewOrder/NewOrder';
+import Orders from '../components/Orders/Order';
 
 import fbConnection from '../helpers/data/connection';
 fbConnection();
