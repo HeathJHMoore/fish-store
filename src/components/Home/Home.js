@@ -10,11 +10,11 @@ class Home extends React.Component {
   render() {
     return (
       <div className="Home">
-        <div class="row">
-          <Inventory />
-          <NewOrder />
-          <Orders />
-        </div>
+          <div className="row">
+            <Inventory />
+            <NewOrder />
+            <Orders />
+          </div>
       </div>
     );
   }
