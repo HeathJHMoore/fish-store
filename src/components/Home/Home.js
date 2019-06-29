@@ -14,7 +14,8 @@ import './Home.scss';
 class Home extends React.Component {
   state = {
     orders: [],
-    fishes: []
+    fishes: [],
+    fishOrder: {},
   }
 
   getOrders = () => {
@@ -37,13 +38,20 @@ class Home extends React.Component {
       .catch(console.error('didnt delete'))
   }
 
+  addFishToOrder = (fishId) => {
+    console.error('fish Id in HOME', fishId);
+    const fishOrderCopy = {...this.state.fishOrder}
+    fishOrderCopy[fishId] = fishOrderCopy[fishId] + 1 || 1;
+    this.setState({fishOrder: fishOrderCopy})
+  }
+
   render() {
     const {fishes} = this.state;
     const {orders} = this.state;
     return (
       <div className="Home">
           <div className="row">
-            <Inventory fishes={fishes}/>
+            <Inventory fishes={fishes}addFishToOrder={this.addFishToOrder}/>
             <NewOrder />
             <Orders orders={orders} deleteOrder={this.deleteOrder}/>
           </div>
