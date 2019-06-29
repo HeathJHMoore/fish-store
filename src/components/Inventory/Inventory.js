@@ -15,6 +15,7 @@ class Inventory extends React.Component {
       .catch(err => console.error(err))
   }
 
+
   render() {
     const fishComponents = this.state.fishes.map(fish => (
       <Fish key={fish.id} fish={fish}/>
