@@ -1,10 +1,19 @@
 import React from 'react'
 import moment from 'moment';
 import orderShapes from '../../helpers/propz/orderShapes';
+import PropTypes from 'prop-types';
 
 class OrderRow extends React.Component {
   static propTypes = {
     order: orderShapes.orderShape,
+    deleteOrder: PropTypes.func.isRequired
+  }
+
+  deleteOrderEvent = (e) => {
+    const {order, deleteOrder} = this.props;
+    e.preventDefault();
+    deleteOrder(order.id);
+    
   }
 
   render() {
@@ -15,7 +24,7 @@ class OrderRow extends React.Component {
         <th>{order.name}</th>
         <td>{moment(order.dateTime).format('LLL')}</td>
         <td>{numFish}</td>
-        <td><button className="btn btn-danger">Delete</button></td>
+        <td><button className="btn btn-danger" onClick={this.deleteOrderEvent}>Delete</button></td>
       </tr>
     )
   }
