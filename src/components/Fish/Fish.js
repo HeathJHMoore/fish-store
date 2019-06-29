@@ -7,7 +7,7 @@ import fishShape from '../../helpers/propz/fishShapes';
 
 class Fish extends React.Component {
   static propTypes = {
-    fish: fishShape
+    fish: fishShape.fishShape,
   }
 
   render() {
