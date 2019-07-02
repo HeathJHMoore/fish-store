@@ -51,6 +51,22 @@ class Home extends React.Component {
     this.setState({fishOrder: fishOrderCopy});
   }
 
+  saveNewOrder = (orderName) => {
+    const newOrder = {
+      fishes: {...this.state.fishOrder}, 
+      name: orderName,
+    };
+    newOrder.dateTime = Date.now();
+    newOrder.uid = firebase.auth().currentUser.uid;
+    console.error(newOrder);
+    ordersData.postOrder(newOrder)
+      .then(() => {
+        this.setState({fishOrder: {}});
+        this.getOrders();
+      })
+      .catch(err => console.error('error', err))
+  }
+
   render() {
     const {fishes} = this.state;
     const {orders} = this.state;
@@ -58,7 +74,7 @@ class Home extends React.Component {
       <div className="Home">
           <div className="row">
             <Inventory fishes={fishes}addFishToOrder={this.addFishToOrder}/>
-            <NewOrder fishOrder={this.state.fishOrder} fishes={this.state.fishes} removeFromOrder={this.removeFromOrder}/>
+            <NewOrder fishOrder={this.state.fishOrder} fishes={this.state.fishes} removeFromOrder={this.removeFromOrder} saveNewOrder={this.saveNewOrder}/>
             <Orders orders={orders} deleteOrder={this.deleteOrder}/>
           </div>
       </div>
